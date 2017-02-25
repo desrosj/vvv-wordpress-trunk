@@ -19,7 +19,7 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
   echo "Configuring WordPress trunk..."
   noroot wp core config --dbname=wordpress_${VVV_SITE_NAME} --dbuser=wp --dbpass=wp --quiet --extra-php <<PHP
 // Match any requests made via xip.io.
-if ( isset( \$_SERVER['HTTP_HOST'] ) && preg_match('/^(getenv("VVV_SITE_NAME").)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(.xip.io)\z/', \$_SERVER['HTTP_HOST'] ) ) {
+if ( isset( \$_SERVER['HTTP_HOST'] ) && preg_match('~^(getenv("VVV_SITE_NAME").)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(.xip.io)\z/', \$_SERVER['HTTP_HOST'] ) ) {
     define( 'WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] );
     define( 'WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] );
 }
